@@ -1,0 +1,49 @@
+name: Multi Platform Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ubuntu-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show OS
+        run: uname -a
+
+      - name: Create File
+        run: |
+          echo "Hello from Ubuntu" > test.txt
+          cat test.txt
+
+  windows-job:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show OS
+        run: systeminfo
+
+      - name: Create File
+        run: |
+          echo Hello from Windows > test.txt
+          type test.txt
+
+  macos-job:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show OS
+        run: uname -a
+
+      - name: Create File
+        run: |
+          echo "Hello from macOS" > test.txt
+          cat test.txt
